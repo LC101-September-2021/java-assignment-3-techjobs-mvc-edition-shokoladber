@@ -27,5 +27,28 @@
         </div>
     </div>
 
+    <table th:if="${jobs}" th:fragment="results-table" class="table">
+        <div>
+            <thead>
+                <th>Name</th>
+                <th>Position Type</th>
+                <th>Employer</th>
+                <th>Core Competencies</th>
+                <th>Location</th>
+            </thead>
+        </div>
+
+        <th:block th:each="job : ${jobs}">
+            <tr>
+                <td th:text="${job.name}"></td>
+                <td th:text="${job.positionType}"></td>
+                <td th:text="${job.employer}"></td>
+                <td th:text="${job.coreCompetency}"></td>
+                <td th:text="${job.location}"></td>
+            </tr>
+        </th:block>
+
+    </table>
+
 </body>
 </html>
