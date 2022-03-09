@@ -34,12 +34,13 @@ public class SearchController {
                                        @RequestParam(required = false) String searchType,
                                        @RequestParam(required = false) String searchTerm){
         ArrayList<Job> jobs;
+        String column = searchType;
+        String value = searchTerm;
+
         if (searchType.equals("all") || searchTerm.equals("")){
-            jobs = JobData.findAll();
-            model.addAttribute("title", "All Jobs");
+            jobs = JobData.findByColumnAndValue(column, value);
+            model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         } else {
-            String column = searchType;
-            String value = searchTerm;
             jobs = JobData.findByColumnAndValue(column, value);
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
